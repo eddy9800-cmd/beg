@@ -6,6 +6,14 @@ import { MapPin, Navigation, Info, Hotel } from 'lucide-react';
 export default function BelgradeTramMap() {
   const [hoveredStop, setHoveredStop] = useState<number | null>(null);
 
+  const handleStopClick = (stopId: number) => {
+    if (hoveredStop === stopId) {
+      setHoveredStop(null);
+    } else {
+      setHoveredStop(stopId);
+    }
+  };
+
   const stops = [
     { id: 1, name: 'Hilton Hotel', x: 300, y: 480, type: 'hotel', info: 'Your starting point! Walk 2 minutes to Trg Slavija tram stop.' },
     { id: 2, name: 'Kalemegdan', x: 250, y: 180, type: 'major', info: 'Historic fortress with stunning river views, museums, and Belgrade Zoo.' },
@@ -102,9 +110,7 @@ export default function BelgradeTramMap() {
                     fill={stop.type === 'hotel' ? '#4CAF50' : '#E31E24'}
                     stroke={stop.type === 'hotel' ? '#2E7D32' : '#B71C1C'}
                     strokeWidth="2"
-                    onMouseEnter={() => setHoveredStop(stop.id)}
-                    onMouseLeave={() => setHoveredStop(null)}
-                    onClick={() => setHoveredStop(hoveredStop === stop.id ? null : stop.id)}
+                    onClick={() => handleStopClick(stop.id)}
                     style={{ cursor: 'pointer' }}
                   />
                   <text 
@@ -126,13 +132,23 @@ export default function BelgradeTramMap() {
             </svg>
 
             {hoveredStop && (
-              <div className="absolute bottom-4 left-4 bg-white p-4 rounded-lg shadow-xl border-2 border-red-500 max-w-xs z-20">
+              <div 
+                className="absolute bottom-4 left-4 bg-white p-4 rounded-lg shadow-xl border-2 border-red-500 max-w-xs z-20"
+                onMouseEnter={() => setHoveredStop(hoveredStop)}
+                onMouseLeave={() => setHoveredStop(null)}
+              >
                 <h4 className="font-bold text-red-600 mb-1">
                   {stops.find(s => s.id === hoveredStop)?.name}
                 </h4>
                 <p className="text-sm text-gray-700">
                   {stops.find(s => s.id === hoveredStop)?.info}
                 </p>
+                <button 
+                  onClick={() => setHoveredStop(null)}
+                  className="mt-2 text-xs text-gray-500 hover:text-gray-700"
+                >
+                  Close
+                </button>
               </div>
             )}
           </div>
