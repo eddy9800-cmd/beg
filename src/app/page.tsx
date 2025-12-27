@@ -233,6 +233,55 @@ export default function BelgradeTramMap() {
                 Hop on and off at any stop - it is all free!
               </p>
             </div>
+
+            <div className="bg-blue-50 rounded-2xl shadow-xl p-6 border-2 border-blue-500">
+              <h3 className="text-xl font-bold text-blue-800 mb-4">Beyond Tram 2L</h3>
+              <p className="text-sm text-gray-600 mb-3">Other major attractions worth visiting (requires different transport):</p>
+              
+              <div className="space-y-4">
+                <div className="bg-white p-3 rounded-lg">
+                  <h4 className="font-semibold text-blue-800 mb-1">Nikola Tesla Museum</h4>
+                  <p className="text-xs text-gray-700 mb-2">Original inventions and personal belongings of the famous Serbian-American inventor. Contains his ashes. Interactive demonstrations of his experiments.</p>
+                  <p className="text-xs text-blue-600"><strong>Transport:</strong> Bus 31, 33 from Slavija or 15 min walk</p>
+                  <p className="text-xs text-gray-500">Time: 1-2 hours • Entry: ~600 RSD</p>
+                </div>
+
+                <div className="bg-white p-3 rounded-lg">
+                  <h4 className="font-semibold text-blue-800 mb-1">Zemun District</h4>
+                  <p className="text-xs text-gray-700 mb-2">Historic riverside town with Austro-Hungarian architecture. Climb Gardoš Tower for panoramic views. Famous fish restaurants along the Danube waterfront.</p>
+                  <p className="text-xs text-blue-600"><strong>Transport:</strong> Bus 15, 84 or Tram 7, 9 (30 min)</p>
+                  <p className="text-xs text-gray-500">Time: 2-3 hours • Free (tower ~200 RSD)</p>
+                </div>
+
+                <div className="bg-white p-3 rounded-lg">
+                  <h4 className="font-semibold text-blue-800 mb-1">Ada Ciganlija</h4>
+                  <p className="text-xs text-gray-700 mb-2">Belgradeʼs "sea" - huge river island with 7km of beaches, water sports, restaurants, and cafes. Perfect for summer relaxation and recreation.</p>
+                  <p className="text-xs text-blue-600"><strong>Transport:</strong> Bus 52, 53 from Slavija (20 min)</p>
+                  <p className="text-xs text-gray-500">Time: Half day • Free entry</p>
+                </div>
+
+                <div className="bg-white p-3 rounded-lg">
+                  <h4 className="font-semibold text-blue-800 mb-1">Avala Tower</h4>
+                  <p className="text-xs text-gray-700 mb-2">204m tall TV tower on Avala mountain with observation deck at 120m. Stunning 360° views of Belgrade and surrounding countryside. Monument to the Unknown Hero nearby.</p>
+                  <p className="text-xs text-blue-600"><strong>Transport:</strong> Bus 400 from Voždovac (50 min total)</p>
+                  <p className="text-xs text-gray-500">Time: 2-3 hours • Entry: ~500 RSD</p>
+                </div>
+
+                <div className="bg-white p-3 rounded-lg">
+                  <h4 className="font-semibold text-blue-800 mb-1">House of Flowers</h4>
+                  <p className="text-xs text-gray-700 mb-2">Mausoleum of Josip Broz Tito, Yugoslaviaʼs leader (1953-1980). Museum with gifts from world leaders, personal items, and peaceful gardens. Important piece of 20th century history.</p>
+                  <p className="text-xs text-blue-600"><strong>Transport:</strong> Bus 40, 41 or Tram 12 (25 min)</p>
+                  <p className="text-xs text-gray-500">Time: 1-2 hours • Entry: ~400 RSD</p>
+                </div>
+
+                <div className="bg-white p-3 rounded-lg">
+                  <h4 className="font-semibold text-blue-800 mb-1">Kalemegdan Underground</h4>
+                  <p className="text-xs text-gray-700 mb-2">Roman wells, medieval dungeons, and underground military passages beneath the fortress. Guided tours only - book in advance. Different from main fortress tour.</p>
+                  <p className="text-xs text-blue-600"><strong>Transport:</strong> Same as Kalemegdan (Tram 2L)</p>
+                  <p className="text-xs text-gray-500">Time: 1 hour • Guided tour: ~1000 RSD</p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
