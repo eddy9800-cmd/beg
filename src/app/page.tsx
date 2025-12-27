@@ -15,7 +15,7 @@ export default function BelgradeTramMap() {
   };
 
   const stops = [
-    { id: 1, name: 'Hilton Hotel', x: 300, y: 480, type: 'hotel', info: 'Your starting point! Walk 2 minutes to Trg Slavija tram stop.' },
+    { id: 1, name: 'Hilton Hotel', x: 330, y: 500, type: 'hotel', info: 'Your starting point! Walk 2 minutes to Trg Slavija tram stop.' },
     { id: 2, name: 'Kalemegdan', x: 250, y: 180, type: 'major', info: 'Historic fortress with stunning river views, museums, and Belgrade Zoo.' },
     { id: 3, name: 'Knez Mihailova', x: 280, y: 220, type: 'major', info: 'Main pedestrian street - shopping, cafes, street performers.' },
     { id: 4, name: 'Kralja Petra', x: 310, y: 250, type: 'major', info: 'Near Republic Square and National Theatre.' },
