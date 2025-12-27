@@ -4,15 +4,7 @@ import React, { useState } from 'react';
 import { MapPin, Navigation, Info, Hotel } from 'lucide-react';
 
 export default function BelgradeTramMap() {
-  const [hoveredStop, setHoveredStop] = useState<number | null>(null);
-
-  const handleStopClick = (stopId: number) => {
-    if (hoveredStop === stopId) {
-      setHoveredStop(null);
-    } else {
-      setHoveredStop(stopId);
-    }
-  };
+  const [selectedStop, setSelectedStop] = useState<number | null>(null);
 
   const stops = [
     { id: 1, name: 'Hilton Hotel', x: 330, y: 500, type: 'hotel', info: 'Your starting point! Walk 2 minutes to Trg Slavija tram stop.' },
@@ -48,6 +40,8 @@ export default function BelgradeTramMap() {
     }
   ];
 
+  const currentStop = selectedStop ? stops.find(s => s.id === selectedStop) : null;
+
   return (
     <div className="w-full min-h-screen bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-800 p-6">
       <div className="max-w-7xl mx-auto">
@@ -71,6 +65,23 @@ export default function BelgradeTramMap() {
             {' '}Public transport is FREE in Belgrade as of January 2025!
           </p>
         </div>
+
+        {currentStop && (
+          <div className="bg-white border-2 border-red-500 rounded-xl p-4 mb-6 shadow-xl">
+            <div className="flex justify-between items-start">
+              <div>
+                <h3 className="text-xl font-bold text-red-600 mb-2">{currentStop.name}</h3>
+                <p className="text-gray-700">{currentStop.info}</p>
+              </div>
+              <button 
+                onClick={() => setSelectedStop(null)}
+                className="text-gray-500 hover:text-gray-700 text-2xl font-bold ml-4"
+              >
+                ×
+              </button>
+            </div>
+          </div>
+        )}
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 bg-gradient-to-b from-blue-100 to-blue-200 rounded-2xl shadow-2xl p-8 relative">
@@ -98,59 +109,42 @@ export default function BelgradeTramMap() {
               
               <ellipse cx="300" cy="350" rx="180" ry="200" fill="none" stroke="#E31E24" strokeWidth="4" strokeDasharray="10,5" opacity="0.8"/>
               
-              {stops.map(stop => (
-                <g 
-                  key={stop.id}
-                  style={{ cursor: 'pointer' }}
-                >
-                  <circle 
-                    cx={stop.x} 
-                    cy={stop.y} 
-                    r={stop.type === 'hotel' ? 10 : 7}
-                    fill={stop.type === 'hotel' ? '#4CAF50' : '#E31E24'}
-                    stroke={stop.type === 'hotel' ? '#2E7D32' : '#B71C1C'}
-                    strokeWidth="2"
-                    onClick={() => handleStopClick(stop.id)}
-                    style={{ cursor: 'pointer' }}
-                  />
-                  <text 
-                    x={stop.x} 
-                    y={stop.y - 15} 
-                    textAnchor="middle" 
-                    fontSize="11" 
-                    fontWeight="600"
-                    fill="#333"
-                    style={{ pointerEvents: 'none' }}
-                  >
-                    {stop.name}
-                  </text>
-                </g>
-              ))}
+              <path d="M 420 350 L 440 350 L 435 345 M 440 350 L 435 355" stroke="#E31E24" strokeWidth="3" fill="none"/>
+              <text x="445" y="355" fill="#E31E24" fontSize="12" fontWeight="bold">Tram Direction</text>
               
-              <path d="M 450 350 L 470 350 L 465 345 M 470 350 L 465 355" stroke="#E31E24" strokeWidth="3" fill="none"/>
-              <text x="480" y="355" fill="#E31E24" fontSize="14" fontWeight="bold">Direction</text>
+              {stops.map(stop => {
+                const isSelected = selectedStop === stop.id;
+                return (
+                  <g key={stop.id}>
+                    <circle 
+                      cx={stop.x} 
+                      cy={stop.y} 
+                      r={isSelected ? 12 : (stop.type === 'hotel' ? 10 : 7)}
+                      fill={stop.type === 'hotel' ? '#4CAF50' : '#E31E24'}
+                      stroke={isSelected ? '#FCD34D' : (stop.type === 'hotel' ? '#2E7D32' : '#B71C1C')}
+                      strokeWidth={isSelected ? 4 : 2}
+                      onClick={() => setSelectedStop(stop.id)}
+                      style={{ cursor: 'pointer' }}
+                    />
+                    <text 
+                      x={stop.x} 
+                      y={stop.y - 18} 
+                      textAnchor="middle" 
+                      fontSize="11" 
+                      fontWeight="600"
+                      fill="#333"
+                      style={{ pointerEvents: 'none' }}
+                    >
+                      {stop.name}
+                    </text>
+                  </g>
+                );
+              })}
             </svg>
 
-            {hoveredStop && (
-              <div 
-                className="absolute bottom-4 left-4 bg-white p-4 rounded-lg shadow-xl border-2 border-red-500 max-w-xs z-20"
-                onMouseEnter={() => setHoveredStop(hoveredStop)}
-                onMouseLeave={() => setHoveredStop(null)}
-              >
-                <h4 className="font-bold text-red-600 mb-1">
-                  {stops.find(s => s.id === hoveredStop)?.name}
-                </h4>
-                <p className="text-sm text-gray-700">
-                  {stops.find(s => s.id === hoveredStop)?.info}
-                </p>
-                <button 
-                  onClick={() => setHoveredStop(null)}
-                  className="mt-2 text-xs text-gray-500 hover:text-gray-700"
-                >
-                  Close
-                </button>
-              </div>
-            )}
+            <div className="mt-4 text-sm text-gray-700 bg-white p-3 rounded-lg">
+              <strong>Tip:</strong> Click on any colored dot to see information about that stop!
+            </div>
           </div>
 
           <div className="space-y-6">
