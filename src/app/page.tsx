@@ -7,36 +7,53 @@ export default function BelgradeTramMap() {
   const [selectedStop, setSelectedStop] = useState<number | null>(null);
 
   const stops = [
-    { id: 1, name: 'Hilton Hotel', x: 330, y: 500, type: 'hotel', info: 'Your starting point! Walk 2 minutes to Trg Slavija tram stop.' },
-    { id: 2, name: 'Kalemegdan', x: 250, y: 180, type: 'major', info: 'Historic fortress with stunning river views, museums, and Belgrade Zoo.' },
-    { id: 3, name: 'Knez Mihailova', x: 280, y: 220, type: 'major', info: 'Main pedestrian street - shopping, cafes, street performers.' },
-    { id: 4, name: 'Kralja Petra', x: 310, y: 250, type: 'major', info: 'Near Republic Square and National Theatre.' },
-    { id: 5, name: 'Skadarlija', x: 390, y: 310, type: 'major', info: 'Bohemian quarter - traditional restaurants and live music!' },
-    { id: 6, name: 'Vukov Spomenik', x: 400, y: 440, type: 'major', info: 'Cultural area near National Library and university.' },
-    { id: 7, name: 'Trg Slavija', x: 300, y: 480, type: 'major', info: 'Major square near your hotel! Perfect starting point.' },
-    { id: 8, name: 'Savski Trg', x: 230, y: 450, type: 'major', info: 'Near Belgrade Waterfront - modern riverside development.' },
+    { id: 1, name: 'Hilton Hotel', x: 330, y: 500, type: 'hotel', info: 'Your starting point! The Hilton Belgrade is located at Slavija Square, one of the busiest roundabouts in Belgrade. Walk just 2 minutes south to reach the Trg Slavija tram stop where you can catch Tram 2L.' },
+    { id: 2, name: 'Kalemegdan Fortress', x: 250, y: 180, type: 'major', info: 'This massive fortress dates back to the 1st century AD and sits at the strategic confluence of the Sava and Danube rivers. Explore medieval towers, Roman wells, the Military Museum, and stunning panoramic views. The fortress park is free to enter and includes the Belgrade Zoo. Allow 2-3 hours to explore fully.' },
+    { id: 3, name: 'Knez Mihailova Street', x: 280, y: 220, type: 'major', info: 'Belgradeʼs main pedestrian boulevard stretching 1km from Republic Square to Kalemegdan. This protected cultural monument features stunning 19th-century architecture, international brand stores, Serbian boutiques, cafes with outdoor seating, and street musicians. Perfect for shopping, people-watching, and soaking in the city atmosphere.' },
+    { id: 4, name: 'Republic Square', x: 310, y: 250, type: 'major', info: 'The heart of Belgrade featuring the iconic Prince Mihailo Monument (1882). Home to the National Museum (housing 400,000 artifacts including Roman mosaics and Renaissance paintings) and the National Theatre (built 1869). This is Belgradeʼs most popular meeting point and hosts frequent cultural events.' },
+    { id: 5, name: 'Skadarlija', x: 390, y: 310, type: 'major', info: 'Belgradeʼs bohemian quarter, often called the Montmartre of Belgrade. This cobblestone street dates to the 1800s and was the gathering place for writers, poets, and artists. Today it features traditional Serbian restaurants (kafanas) with live folk music, outdoor dining, and vintage street lamps. Try traditional dishes like ćevapi, pljeskavica, and sarma. Reservations recommended for dinner.' },
+    { id: 6, name: 'Vukov Spomenik', x: 400, y: 440, type: 'major', info: 'Cultural and educational district named after the monument to Vuk Karadžić, reformer of the Serbian language. Located near the National Library of Serbia, University of Belgrade Faculty of Law, and several museums. The area has a vibrant student atmosphere with affordable cafes and bookshops.' },
+    { id: 7, name: 'Trg Slavija', x: 300, y: 480, type: 'major', info: 'Major traffic roundabout and transport hub named after the Slavic Congress held here in 1910. Features the Monument to Dimitrije Tucović, a prominent socialist leader. This is your nearest tram stop from the Hilton Hotel - the perfect starting point for your Belgrade exploration.' },
+    { id: 8, name: 'Belgrade Waterfront', x: 230, y: 450, type: 'major', info: 'A modern €3.5 billion development along the Sava River featuring contemporary architecture, luxury apartments, shopping mall (Galerija Belgrade), restaurants with river views, and a scenic promenade. Visit the striking glass Kula Belgrade tower and enjoy sunset walks along the river. Great contrast to Old Belgrade.' },
+    { id: 9, name: 'St. Sava Temple', x: 350, y: 520, type: 'major', info: 'One of the largest Orthodox churches in the world! This stunning white marble cathedral with golden domes was built on the site where the Ottomans burned the relics of Saint Sava in 1594. Construction began in 1935 and the interior is still being decorated with magnificent mosaics. The main dome is 70m high. Free entry. Open 7am-7pm daily. Allow 1 hour to visit.' },
   ];
 
   const highlights = [
     {
       title: 'Kalemegdan Fortress',
-      description: 'Medieval fortress at river confluence. Museums, zoo, stunning panoramic views of both rivers.',
-      stop: 'Kalemegdan'
+      description: 'Ancient fortress dating to 1st century AD at the confluence of two rivers. Features medieval towers, Roman wells, Military Museum, and panoramic views. Home to Belgrade Zoo. Free entry, allow 2-3 hours.',
+      stop: 'Kalemegdan Fortress',
+      time: '2-3 hours'
+    },
+    {
+      title: 'St. Sava Temple',
+      description: 'One of the largest Orthodox churches in the world with stunning white marble and golden domes. Built where Saint Sava relics were burned in 1594. Main dome is 70m high with magnificent interior mosaics.',
+      stop: 'St. Sava Temple',
+      time: '1 hour'
     },
     {
       title: 'Knez Mihailova Street',
-      description: 'Main pedestrian zone with 19th-century architecture, shops, cafes, and street performers.',
-      stop: 'Kralja Petra'
+      description: 'Belgradeʼs 1km pedestrian boulevard with 19th-century architecture. Protected cultural monument featuring international shops, Serbian boutiques, outdoor cafes, and street musicians.',
+      stop: 'Knez Mihailova Street',
+      time: '1-2 hours'
     },
     {
-      title: 'Skadarlija',
-      description: 'Belgrade bohemian quarter - cobblestone streets, traditional restaurants, live music.',
-      stop: 'Skadarlija pijaca'
+      title: 'Skadarlija District',
+      description: 'The Montmartre of Belgrade - bohemian cobblestone quarter from the 1800s. Traditional Serbian restaurants with live folk music, vintage atmosphere. Try ćevapi, pljeskavica, and sarma.',
+      stop: 'Skadarlija',
+      time: '2 hours (dinner)'
+    },
+    {
+      title: 'Republic Square',
+      description: 'Central meeting point featuring Prince Mihailo Monument (1882). Home to National Museum (400,000 artifacts) and National Theatre (1869). Frequent cultural events and performances.',
+      stop: 'Republic Square',
+      time: '30-60 minutes'
     },
     {
       title: 'Belgrade Waterfront',
-      description: 'Modern riverside development with shops, restaurants, and scenic promenades.',
-      stop: 'Savski Trg'
+      description: 'Modern €3.5 billion riverside development with contemporary architecture, Galerija Belgrade shopping mall, restaurants with river views, and scenic promenades. Beautiful at sunset.',
+      stop: 'Belgrade Waterfront',
+      time: '1-2 hours'
     }
   ];
 
@@ -162,9 +179,14 @@ export default function BelgradeTramMap() {
                     <p className="text-sm text-gray-600 mb-2">
                       {highlight.description}
                     </p>
-                    <p className="text-xs text-red-600 font-semibold">
-                      Stop: {highlight.stop}
-                    </p>
+                    <div className="flex justify-between items-center">
+                      <p className="text-xs text-red-600 font-semibold">
+                        Stop: {highlight.stop}
+                      </p>
+                      <p className="text-xs text-gray-500 italic">
+                        {highlight.time}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
