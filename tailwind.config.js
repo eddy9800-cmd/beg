@@ -1,4 +1,3 @@
-## 4. tailwind.config.js
 ```javascript
 /** @type {import('tailwindcss').Config} */
 module.exports = {
