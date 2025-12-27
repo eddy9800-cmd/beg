@@ -93,10 +93,7 @@ export default function BelgradeTramMap() {
               {stops.map(stop => (
                 <g 
                   key={stop.id}
-                  onMouseEnter={() => setHoveredStop(stop.id)}
-                  onMouseLeave={() => setHoveredStop(null)}
-                  onClick={() => setHoveredStop(hoveredStop === stop.id ? null : stop.id)}
-                  className="cursor-pointer"
+                  style={{ cursor: 'pointer' }}
                 >
                   <circle 
                     cx={stop.x} 
@@ -105,6 +102,10 @@ export default function BelgradeTramMap() {
                     fill={stop.type === 'hotel' ? '#4CAF50' : '#E31E24'}
                     stroke={stop.type === 'hotel' ? '#2E7D32' : '#B71C1C'}
                     strokeWidth="2"
+                    onMouseEnter={() => setHoveredStop(stop.id)}
+                    onMouseLeave={() => setHoveredStop(null)}
+                    onClick={() => setHoveredStop(hoveredStop === stop.id ? null : stop.id)}
+                    style={{ cursor: 'pointer' }}
                   />
                   <text 
                     x={stop.x} 
@@ -113,6 +114,7 @@ export default function BelgradeTramMap() {
                     fontSize="11" 
                     fontWeight="600"
                     fill="#333"
+                    style={{ pointerEvents: 'none' }}
                   >
                     {stop.name}
                   </text>
