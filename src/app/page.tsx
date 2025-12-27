@@ -5,6 +5,49 @@ import { MapPin, Navigation, Info, Hotel } from 'lucide-react';
 
 export default function BelgradeTramMap() {
   const [selectedStop, setSelectedStop] = useState<number | null>(null);
+  const [userLocation, setUserLocation] = useState<{lat: number, lon: number} | null>(null);
+  const [locationError, setLocationError] = useState<string | null>(null);
+
+  // Get user location on component mount
+  React.useEffect(() => {
+    if ('geolocation' in navigator) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          setUserLocation({
+            lat: position.coords.latitude,
+            lon: position.coords.longitude
+          });
+          setLocationError(null);
+        },
+        (error) => {
+          setLocationError('Location access denied. Enable location to see your position on the map.');
+          console.log('Location error:', error);
+        }
+      );
+    } else {
+      setLocationError('Location not supported on this device.');
+    }
+  }, []);
+
+  // Convert GPS coordinates to map coordinates (approximate for Belgrade)
+  // Belgrade center is roughly at: 44.8176° N, 20.4569° E
+  const gpsToMapCoords = (lat: number, lon: number) => {
+    const belgradeCenterLat = 44.8176;
+    const belgradeCenterLon = 20.4569;
+    const mapCenterX = 300;
+    const mapCenterY = 350;
+    
+    // Scale factor (adjust for map size)
+    const scaleX = 8000;
+    const scaleY = 8000;
+    
+    const x = mapCenterX + (lon - belgradeCenterLon) * scaleX;
+    const y = mapCenterY - (lat - belgradeCenterLat) * scaleY;
+    
+    return { x, y };
+  };
+
+  const userMapPosition = userLocation ? gpsToMapCoords(userLocation.lat, userLocation.lon) : null;
 
   const stops = [
     { id: 1, name: 'Hilton Hotel', x: 330, y: 500, type: 'hotel', info: 'Your starting point! The Hilton Belgrade is located at Slavija Square, one of the busiest roundabouts in Belgrade. Walk just 2 minutes south to reach the Trg Slavija tram stop where you can catch Tram 2L.' },
@@ -100,6 +143,22 @@ export default function BelgradeTramMap() {
           </div>
         )}
 
+        {locationError && (
+          <div className="bg-orange-100 border-l-4 border-orange-500 p-4 mb-6 rounded-lg">
+            <p className="text-orange-900 text-sm">
+              <strong>Location:</strong> {locationError}
+            </p>
+          </div>
+        )}
+
+        {userLocation && (
+          <div className="bg-green-100 border-l-4 border-green-500 p-4 mb-6 rounded-lg">
+            <p className="text-green-900 text-sm">
+              <strong>✓ Your location is shown on the map</strong> as a blue pulsing dot
+            </p>
+          </div>
+        )}
+
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 bg-gradient-to-b from-blue-100 to-blue-200 rounded-2xl shadow-2xl p-8 relative">
             <div className="absolute top-4 right-4 bg-white p-3 rounded-lg shadow-lg text-sm z-10">
@@ -111,10 +170,16 @@ export default function BelgradeTramMap() {
                 <div className="w-4 h-4 bg-red-600 rounded-full border-2 border-red-800"></div>
                 <span>Major Attraction</span>
               </div>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 mb-2">
                 <div className="w-4 h-4 bg-orange-500 rounded-full border-2 border-orange-700"></div>
                 <span>Tram Stop</span>
               </div>
+              {userLocation && (
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 bg-blue-500 rounded-full border-2 border-blue-700"></div>
+                  <span>Your Location</span>
+                </div>
+              )}
             </div>
 
             <svg viewBox="0 0 600 600" className="w-full h-auto">
@@ -128,6 +193,40 @@ export default function BelgradeTramMap() {
               
               <path d="M 420 350 L 440 350 L 435 345 M 440 350 L 435 355" stroke="#E31E24" strokeWidth="3" fill="none"/>
               <text x="445" y="355" fill="#E31E24" fontSize="12" fontWeight="bold">Tram Direction</text>
+              
+              {userMapPosition && userMapPosition.x > 0 && userMapPosition.x < 600 && 
+               userMapPosition.y > 0 && userMapPosition.y < 600 && (
+                <g>
+                  <circle 
+                    cx={userMapPosition.x} 
+                    cy={userMapPosition.y} 
+                    r="15"
+                    fill="#3B82F6"
+                    opacity="0.3"
+                  >
+                    <animate attributeName="r" from="15" to="25" dur="1.5s" repeatCount="indefinite"/>
+                    <animate attributeName="opacity" from="0.3" to="0" dur="1.5s" repeatCount="indefinite"/>
+                  </circle>
+                  <circle 
+                    cx={userMapPosition.x} 
+                    cy={userMapPosition.y} 
+                    r="8"
+                    fill="#3B82F6"
+                    stroke="#1E40AF"
+                    strokeWidth="2"
+                  />
+                  <text 
+                    x={userMapPosition.x} 
+                    y={userMapPosition.y - 20} 
+                    textAnchor="middle" 
+                    fontSize="11" 
+                    fontWeight="bold"
+                    fill="#1E40AF"
+                  >
+                    You are here
+                  </text>
+                </g>
+              )}
               
               {stops.map(stop => {
                 const isSelected = selectedStop === stop.id;
