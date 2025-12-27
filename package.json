@@ -1,7 +1,7 @@
 ## 1. package.json
 ```json
 {
-  "name": "belgrade-tram-map",
+  "name": "beg",
   "version": "1.0.0",
   "private": true,
   "scripts": {
