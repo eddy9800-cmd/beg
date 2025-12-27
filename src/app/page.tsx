@@ -1,4 +1,3 @@
-## 9. src/app/page.tsx
 ```tsx
 'use client';
 
