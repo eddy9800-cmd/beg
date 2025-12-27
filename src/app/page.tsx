@@ -95,6 +95,7 @@ export default function BelgradeTramMap() {
                   key={stop.id}
                   onMouseEnter={() => setHoveredStop(stop.id)}
                   onMouseLeave={() => setHoveredStop(null)}
+                  onClick={() => setHoveredStop(hoveredStop === stop.id ? null : stop.id)}
                   className="cursor-pointer"
                 >
                   <circle 
