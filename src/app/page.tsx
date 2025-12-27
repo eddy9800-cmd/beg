@@ -19,25 +19,21 @@ export default function BelgradeTramMap() {
 
   const highlights = [
     {
-      icon: '🏰',
       title: 'Kalemegdan Fortress',
       description: 'Medieval fortress at river confluence. Museums, zoo, stunning panoramic views of both rivers.',
       stop: 'Kalemegdan'
     },
     {
-      icon: '🛍️',
       title: 'Knez Mihailova Street',
       description: 'Main pedestrian zone with 19th-century architecture, shops, cafes, and street performers.',
       stop: 'Kralja Petra'
     },
     {
-      icon: '🎭',
       title: 'Skadarlija',
       description: 'Belgrade bohemian quarter - cobblestone streets, traditional restaurants, live music.',
       stop: 'Skadarlija pijaca'
     },
     {
-      icon: '🌊',
       title: 'Belgrade Waterfront',
       description: 'Modern riverside development with shops, restaurants, and scenic promenades.',
       stop: 'Savski Trg'
@@ -48,17 +44,23 @@ export default function BelgradeTramMap() {
     <div className="w-full min-h-screen bg-gradient-to-br from-purple-600 via-purple-700 to-indigo-800 p-6">
       <div className="max-w-7xl mx-auto">
         <div className="bg-white rounded-2xl shadow-2xl p-6 mb-6">
-          <h1 className="text-4xl font-bold text-red-600 flex items-center gap-3 mb-2">
-            <Navigation className="w-10 h-10" />
-            Belgrade Tram 2L Tourist Route
-          </h1>
-          <p className="text-xl text-gray-700">Your Journey from Hilton Hotel - February 2, 2026</p>
+          <div className="flex items-center gap-3 mb-2">
+            <Navigation className="w-10 h-10 text-red-600" />
+            <h1 className="text-4xl font-bold text-red-600">
+              Belgrade Tram 2L Tourist Route
+            </h1>
+          </div>
+          <p className="text-xl text-gray-700">
+            Your Journey from Hilton Hotel - February 2, 2026
+          </p>
         </div>
 
         <div className="bg-yellow-100 border-l-4 border-yellow-500 p-4 mb-6 rounded-lg">
           <p className="text-yellow-900">
-            <strong>Important Update:</strong> Tram 2 is temporarily out of service. Use Tram 2L which follows a similar circular route. 
-            <strong className="ml-2">Good News:</strong> Public transport is FREE in Belgrade as of January 2025!
+            <strong>Important Update:</strong>
+            {' '}Tram 2 is temporarily out of service. Use Tram 2L which follows a similar circular route.{' '}
+            <strong>Good News:</strong>
+            {' '}Public transport is FREE in Belgrade as of January 2025!
           </p>
         </div>
 
@@ -102,7 +104,6 @@ export default function BelgradeTramMap() {
                     fill={stop.type === 'hotel' ? '#4CAF50' : '#E31E24'}
                     stroke={stop.type === 'hotel' ? '#2E7D32' : '#B71C1C'}
                     strokeWidth="2"
-                    className="transition-all duration-300"
                   />
                   <text 
                     x={stop.x} 
@@ -118,7 +119,6 @@ export default function BelgradeTramMap() {
               ))}
               
               <path d="M 450 350 L 470 350 L 465 345 M 470 350 L 465 355" stroke="#E31E24" strokeWidth="3" fill="none"/>
-              <text x="480" y="355" fill="#E31E24" fontSize="14" fontWeight="bold">→</text>
             </svg>
 
             {hoveredStop && (
@@ -135,45 +135,62 @@ export default function BelgradeTramMap() {
 
           <div className="space-y-6">
             <div className="bg-white rounded-2xl shadow-xl p-6">
-              <h3 className="text-xl font-bold text-red-600 mb-4 flex items-center gap-2">
-                <MapPin className="w-6 h-6" />
-                Top Highlights
-              </h3>
+              <div className="flex items-center gap-2 mb-4">
+                <MapPin className="w-6 h-6 text-red-600" />
+                <h3 className="text-xl font-bold text-red-600">Top Highlights</h3>
+              </div>
               <div className="space-y-3">
                 {highlights.map((highlight, idx) => (
                   <div key={idx} className="bg-gray-50 p-3 rounded-lg border-2 border-transparent hover:border-red-500 transition-all">
-                    <h4 className="font-semibold text-gray-800 mb-1 flex items-center gap-2">
-                      <span className="text-xl">{highlight.icon}</span>
+                    <h4 className="font-semibold text-gray-800 mb-1">
                       {highlight.title}
                     </h4>
-                    <p className="text-sm text-gray-600 mb-2">{highlight.description}</p>
-                    <p className="text-xs text-red-600 font-semibold">Stop: {highlight.stop}</p>
+                    <p className="text-sm text-gray-600 mb-2">
+                      {highlight.description}
+                    </p>
+                    <p className="text-xs text-red-600 font-semibold">
+                      Stop: {highlight.stop}
+                    </p>
                   </div>
                 ))}
               </div>
             </div>
 
             <div className="bg-white rounded-2xl shadow-xl p-6">
-              <h3 className="text-xl font-bold text-red-600 mb-4 flex items-center gap-2">
-                <Info className="w-6 h-6" />
-                Travel Tips
-              </h3>
+              <div className="flex items-center gap-2 mb-4">
+                <Info className="w-6 h-6 text-red-600" />
+                <h3 className="text-xl font-bold text-red-600">Travel Tips</h3>
+              </div>
               <ul className="space-y-2 text-sm text-gray-700">
-                <li className="pb-2 border-b border-gray-200"><strong>Transport:</strong> ALL public transport is FREE!</li>
-                <li className="pb-2 border-b border-gray-200"><strong>Weather:</strong> 0-8°C - dress warmly</li>
-                <li className="pb-2 border-b border-gray-200"><strong>Hours:</strong> Most attractions 10 AM - 5 PM</li>
-                <li className="pb-2 border-b border-gray-200"><strong>Frequency:</strong> Trams every 10-15 minutes</li>
-                <li className="pb-2 border-b border-gray-200"><strong>App:</strong> Download Moovit for tracking</li>
-                <li className="pb-2 border-b border-gray-200"><strong>Lunch:</strong> Try Serbian food in Skadarlija</li>
-                <li><strong>Duration:</strong> Full loop takes 30 minutes</li>
+                <li className="pb-2 border-b border-gray-200">
+                  <strong>Transport:</strong> ALL public transport is FREE!
+                </li>
+                <li className="pb-2 border-b border-gray-200">
+                  <strong>Weather:</strong> 0-8C - dress warmly
+                </li>
+                <li className="pb-2 border-b border-gray-200">
+                  <strong>Hours:</strong> Most attractions 10 AM - 5 PM
+                </li>
+                <li className="pb-2 border-b border-gray-200">
+                  <strong>Frequency:</strong> Trams every 10-15 minutes
+                </li>
+                <li className="pb-2 border-b border-gray-200">
+                  <strong>App:</strong> Download Moovit for tracking
+                </li>
+                <li className="pb-2 border-b border-gray-200">
+                  <strong>Lunch:</strong> Try Serbian food in Skadarlija
+                </li>
+                <li>
+                  <strong>Duration:</strong> Full loop takes 30 minutes
+                </li>
               </ul>
             </div>
 
             <div className="bg-green-50 rounded-2xl shadow-xl p-6 border-2 border-green-500">
-              <h3 className="text-xl font-bold text-green-800 mb-3 flex items-center gap-2">
-                <Hotel className="w-6 h-6" />
-                From Your Hotel
-              </h3>
+              <div className="flex items-center gap-2 mb-3">
+                <Hotel className="w-6 h-6 text-green-800" />
+                <h3 className="text-xl font-bold text-green-800">From Your Hotel</h3>
+              </div>
               <p className="text-gray-700 leading-relaxed">
                 Walk 2 minutes from Hilton to <strong>Trg Slavija</strong> tram stop. 
                 Board Tram 2L and enjoy the circular route around Belgrade historic center. 
