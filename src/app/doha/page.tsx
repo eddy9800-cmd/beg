@@ -33,8 +33,9 @@ export default function DohaMetroMap() {
   const userMapPosition = userLocation ? gpsToMapCoords(userLocation.lat, userLocation.lon) : null;
 
   const stops = [
-    { id: 1, name: 'HIA Airport', x: 450, y: 350, type: 'major', info: 'Hamad International Airport Terminal 1. Direct metro connection from arrivals. One of the worlds best airports with duty-free shopping, restaurants, and lounges. The metro runs every 5-6 minutes to the city center (20 min ride).' },
-    { id: 2, name: 'Souq Waqif', x: 300, y: 300, type: 'major', info: 'Traditional Qatari marketplace dating back centuries. Maze of alleyways with spices, textiles, handicrafts, and traditional restaurants. Try authentic Qatari cuisine. Open until midnight. Gold Line station, 5 min walk.' },
+    { id: 1, name: 'Crowne Plaza Hotel', x: 315, y: 305, type: 'hotel', info: 'Your hotel! Crowne Plaza Doha - The Business Park. Located just 3-minute walk from Al Doha Al Jadeeda Metro Station (Red Line). 15 minutes from airport, near West Bay business district, Katara Cultural Village and major attractions. Perfect base for exploring Doha.' },
+    { id: 2, name: 'HIA Airport', x: 450, y: 350, type: 'major', info: 'Hamad International Airport Terminal 1. Direct metro connection from arrivals. One of the worlds best airports with duty-free shopping, restaurants, and lounges. The metro runs every 5-6 minutes to the city center (20 min ride).' },
+    { id: 3, name: 'Souq Waqif', x: 300, y: 300, type: 'major', info: 'Traditional Qatari marketplace dating back centuries. Maze of alleyways with spices, textiles, handicrafts, and traditional restaurants. Try authentic Qatari cuisine. Open until midnight. Gold Line station, 5 min walk.' },
     { id: 3, name: 'Museum of Islamic Art', x: 320, y: 280, type: 'major', info: 'World-class museum designed by I.M. Pei featuring 14 centuries of Islamic art. Stunning waterfront location on the Corniche. Free entry to park, museum ticket 50 QAR. Open Sat-Thu 9am-7pm. Nearby Corniche station on Red Line.' },
     { id: 4, name: 'The Pearl-Qatar', x: 250, y: 200, type: 'major', info: 'Luxury man-made island with Mediterranean-style marinas, upscale shopping, fine dining, and beaches. Perfect for evening strolls. No direct metro - take Red Line to Legtaifiya then taxi (10 min, 15-20 QAR) or Metrolink bus.' },
     { id: 5, name: 'Katara Cultural Village', x: 220, y: 230, type: 'major', info: 'Cultural hub with amphitheater, galleries, beaches, and restaurants representing global cuisines. Regular festivals and exhibitions. Free entry. Open daily. Direct Red Line station. Beautiful at sunset. Allow 2-3 hours.' },
@@ -47,12 +48,12 @@ export default function DohaMetroMap() {
   ];
 
   const highlights = [
-    { title: 'Souq Waqif', description: 'Ancient marketplace with traditional Qatari goods, spices, textiles, and authentic restaurants. Open until midnight. Perfect for evening exploration and dinner.', stop: 'Souq Waqif (Gold Line)', time: '2-3 hours' },
-    { title: 'Museum of Islamic Art', description: 'I.M. Pei masterpiece with 1400 years of Islamic art. Waterfront Corniche location. 50 QAR entry. One of Middle Easts finest museums.', stop: 'Corniche (Red Line)', time: '2-3 hours' },
-    { title: 'Katara Cultural Village', description: 'Cultural hub with amphitheater, galleries, beach, and international restaurants. Regular festivals and events. Free entry. Beautiful sunset spot.', stop: 'Katara (Red Line)', time: '2-3 hours' },
-    { title: 'The Pearl-Qatar', description: 'Luxury man-made island with marinas, upscale shopping, and fine dining. Mediterranean atmosphere. Evening strolls along the marina recommended.', stop: 'Legtaifiya then taxi', time: '2-4 hours' },
-    { title: 'National Museum of Qatar', description: 'Jean Nouvel desert rose architecture. Chronicles Qatar from ancient times to present. Immersive galleries. 50 QAR entry.', stop: 'National Museum (Gold Line)', time: '2-3 hours' },
-    { title: 'West Bay Corniche', description: 'Modern skyline with waterfront promenade. Perfect for walks with city views. Many restaurants and cafes. Free outdoor gym equipment along the path.', stop: 'West Bay (Red Line)', time: '1-2 hours' }
+    { title: 'Souq Waqif', description: 'Ancient marketplace with traditional Qatari goods, spices, textiles, and authentic restaurants. Open until midnight. Perfect for evening exploration and dinner.', stop: 'Souq Waqif (Gold Line)', time: '2-3 hours', price: 'Free entry' },
+    { title: 'Museum of Islamic Art', description: 'I.M. Pei masterpiece with 1400 years of Islamic art. Waterfront Corniche location. 50 QAR (12.50 EUR) entry. One of Middle Easts finest museums.', stop: 'Corniche (Red Line)', time: '2-3 hours', price: '12.50 EUR' },
+    { title: 'Katara Cultural Village', description: 'Cultural hub with amphitheater, galleries, beach, and international restaurants. Regular festivals and events. Free entry. Beautiful sunset spot.', stop: 'Katara (Red Line)', time: '2-3 hours', price: 'Free' },
+    { title: 'The Pearl-Qatar', description: 'Luxury man-made island with marinas, upscale shopping, and fine dining. Mediterranean atmosphere. Evening strolls along the marina recommended.', stop: 'Legtaifiya then taxi', time: '2-4 hours', price: 'Free' },
+    { title: 'National Museum of Qatar', description: 'Jean Nouvel desert rose architecture. Chronicles Qatar from ancient times to present. Immersive galleries. 50 QAR (12.50 EUR) entry.', stop: 'National Museum (Gold Line)', time: '2-3 hours', price: '12.50 EUR' },
+    { title: 'West Bay Corniche', description: 'Modern skyline with waterfront promenade. Perfect for walks with city views. Many restaurants and cafes. Free outdoor gym equipment along the path.', stop: 'West Bay (Red Line)', time: '1-2 hours', price: 'Free' }
   ];
 
   const currentStop = selectedStop ? stops.find(s => s.id === selectedStop) : null;
@@ -100,6 +101,7 @@ export default function DohaMetroMap() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 bg-gradient-to-b from-blue-50 to-purple-100 rounded-2xl shadow-2xl p-8 relative">
             <div className="absolute top-4 right-4 bg-white p-3 rounded-lg shadow-lg text-sm z-10">
+              <div className="flex items-center gap-2 mb-2"><div className="w-4 h-4 bg-green-500 rounded-full border-2 border-green-700"></div><span>Your Hotel</span></div>
               <div className="flex items-center gap-2 mb-2"><div className="w-4 h-4 bg-purple-600 rounded-full border-2 border-purple-800"></div><span>Major Attraction</span></div>
               <div className="flex items-center gap-2 mb-2"><div className="w-4 h-4 bg-indigo-500 rounded-full border-2 border-indigo-700"></div><span>Metro Stop</span></div>
               {userLocation && (<div className="flex items-center gap-2"><div className="w-4 h-4 bg-blue-500 rounded-full border-2 border-blue-700"></div><span>Your Location</span></div>)}
@@ -129,7 +131,7 @@ export default function DohaMetroMap() {
                 const isSelected = selectedStop === stop.id;
                 return (
                   <g key={stop.id}>
-                    <circle cx={stop.x} cy={stop.y} r={isSelected ? 12 : 8} fill={stop.type === 'major' ? '#9333EA' : '#6366F1'} stroke={isSelected ? '#FCD34D' : '#581C87'} strokeWidth={isSelected ? 4 : 2} onClick={() => setSelectedStop(stop.id)} style={{ cursor: 'pointer' }}/>
+                    <circle cx={stop.x} cy={stop.y} r={isSelected ? 12 : 8} fill={stop.type === 'hotel' ? '#22C55E' : (stop.type === 'major' ? '#9333EA' : '#6366F1')} stroke={isSelected ? '#FCD34D' : (stop.type === 'hotel' ? '#15803D' : '#581C87')} strokeWidth={isSelected ? 4 : 2} onClick={() => setSelectedStop(stop.id)} style={{ cursor: 'pointer' }}/>
                     <text x={stop.x} y={stop.y - 15} textAnchor="middle" fontSize="10" fontWeight="600" fill="#1F2937" style={{ pointerEvents: 'none' }}>{stop.name}</text>
                   </g>
                 );
@@ -149,7 +151,10 @@ export default function DohaMetroMap() {
                     <p className="text-sm text-gray-600 mb-2">{highlight.description}</p>
                     <div className="flex justify-between items-center">
                       <p className="text-xs text-purple-600 font-semibold">Station: {highlight.stop}</p>
-                      <p className="text-xs text-gray-500 italic">{highlight.time}</p>
+                      <div className="text-right">
+                        <p className="text-xs text-gray-500 italic">{highlight.time}</p>
+                        <p className="text-xs font-semibold text-green-600">{highlight.price}</p>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -159,11 +164,11 @@ export default function DohaMetroMap() {
             <div className="bg-white rounded-2xl shadow-xl p-6">
               <div className="flex items-center gap-2 mb-4"><Info className="w-6 h-6 text-purple-600" /><h3 className="text-xl font-bold text-purple-600">Travel Tips</h3></div>
               <ul className="space-y-2 text-sm text-gray-700">
-                <li className="pb-2 border-b border-gray-200"><strong>Day Pass:</strong> 6 QAR unlimited travel (best value!)</li>
+                <li className="pb-2 border-b border-gray-200"><strong>Day Pass:</strong> 6 QAR (1.50 EUR) unlimited travel</li>
                 <li className="pb-2 border-b border-gray-200"><strong>Weather:</strong> 15-25C, sunny and pleasant in February</li>
                 <li className="pb-2 border-b border-gray-200"><strong>Dress Code:</strong> Modest clothing (shoulders and knees covered)</li>
                 <li className="pb-2 border-b border-gray-200"><strong>Prayer Times:</strong> Some shops close briefly (5-15 min)</li>
-                <li className="pb-2 border-b border-gray-200"><strong>Currency:</strong> Qatari Riyal (QAR), 1 QAR = 0.27 USD</li>
+                <li className="pb-2 border-b border-gray-200"><strong>Currency:</strong> Qatari Riyal (QAR), 1 EUR = 4 QAR</li>
                 <li className="pb-2 border-b border-gray-200"><strong>Language:</strong> Arabic, English widely spoken</li>
                 <li><strong>Safety:</strong> Extremely safe, low crime rate</li>
               </ul>
