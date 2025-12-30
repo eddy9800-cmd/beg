@@ -33,7 +33,8 @@ export default function AbuDhabiBigBusMap() {
   const userMapPosition = userLocation ? gpsToMapCoords(userLocation.lat, userLocation.lon) : null;
 
   const stops = [
-    { id: 1, name: 'Sheikh Zayed Mosque', x: 180, y: 350, type: 'major', info: 'One of the worlds largest mosques, accommodating 40,000 worshippers. Stunning white marble, 82 domes, 1000 columns, and intricate Islamic design. FREE entry but strict dress code required (long sleeves, long pants/skirt, headscarf for women provided). Open Sat-Thu 9am-10pm, Fri 4:30pm-10pm. Guided tours in English hourly. Dedicated shuttle from Abu Dhabi Mall. Allow 2-3 hours.' },
+    { id: 1, name: 'Hilton Yas Island', x: 420, y: 380, type: 'hotel', info: 'Your hotel! Hilton Abu Dhabi Yas Island located on Yas Bay waterfront. Includes FREE theme park tickets (Ferrari World, Yas Waterworld, Warner Bros, SeaWorld). 10 minutes from airport. Free shuttle bus (Yas Express) to all Yas Island attractions. Perfect entertainment hub base. Big Bus does not stop here - take taxi to Abu Dhabi Mall (15 min, 50 AED/12 EUR) to start tour.' },
+    { id: 2, name: 'Sheikh Zayed Mosque', x: 180, y: 350, type: 'major', info: 'One of the worlds largest mosques, accommodating 40,000 worshippers. Stunning white marble, 82 domes, 1000 columns, and intricate Islamic design. FREE entry but strict dress code required (long sleeves, long pants/skirt, headscarf for women provided). Open Sat-Thu 9am-10pm, Fri 4:30pm-10pm. Guided tours in English hourly. Dedicated shuttle from Abu Dhabi Mall. Allow 2-3 hours.' },
     { id: 2, name: 'Louvre Abu Dhabi', x: 320, y: 240, type: 'major', info: 'Spectacular Jean Nouvel-designed museum on Saadiyat Island. 700 permanent artworks plus 300 on loan, spanning human history and cultures. Famous rain of light dome. Entry 63 AED, open 10am-6:30pm, closed Mondays. Collect ticket from Big Bus driver at Stop 2. Allow 2-3 hours for full visit. Waterfront cafes available.' },
     { id: 3, name: 'Presidential Palace', x: 380, y: 280, type: 'major', info: 'Qasr Al Watan - working presidential palace open to visitors. Intricate Arabian design, grand halls, stunning library, and exhibits on UAE governance. Entry 65 AED. Open 9am-7pm daily, tours every 30 minutes. STRICT dress code: long pants for men, modest dress with long sleeves for women. Allow 1.5-2 hours.' },
     { id: 4, name: 'Emirates Palace', x: 350, y: 300, type: 'major', info: 'One of worlds most luxurious hotels. Gold-plated interiors, private beach, and opulent architecture. Visit the lobby, have afternoon tea, or try the famous 24-karat gold cappuccino at Le Cafe (85 AED). Gardens open to public. Perfect for photos and experiencing ultra-luxury Abu Dhabi style.' },
@@ -49,11 +50,11 @@ export default function AbuDhabiBigBusMap() {
 
   const highlights = [
     { title: 'Sheikh Zayed Grand Mosque', description: 'Worlds most beautiful mosque with 82 domes and 1000 marble columns. FREE entry with strict dress code. Dedicated shuttle from Abu Dhabi Mall. Guided English tours hourly.', stop: 'Mosque Shuttle (Green Route)', time: '2-3 hours', price: 'FREE' },
-    { title: 'Louvre Abu Dhabi', description: 'Jean Nouvel masterpiece on Saadiyat Island. 700+ artworks spanning human civilization. Famous rain of light dome. Closed Mondays. Waterfront location.', stop: 'Stop 2 - Louvre', time: '2-3 hours', price: '63 AED' },
-    { title: 'Presidential Palace', description: 'Qasr Al Watan - working palace open to public. Intricate Arabian design, grand library, governance exhibits. Tours every 30 minutes. Strict modest dress required.', stop: 'Stop 11 - Presidential Palace', time: '1.5-2 hours', price: '65 AED' },
-    { title: 'Emirates Palace Hotel', description: 'Ultra-luxury hotel with gold interiors. Visit lobby, try 24k gold cappuccino (85 AED), afternoon tea. Perfect for experiencing Abu Dhabi opulence.', stop: 'Stop 10 - Emirates Palace', time: '1 hour', price: 'Free lobby' },
+    { title: 'Louvre Abu Dhabi', description: 'Jean Nouvel masterpiece on Saadiyat Island. 700+ artworks spanning human civilization. Famous rain of light dome. Closed Mondays. Waterfront location.', stop: 'Stop 2 - Louvre', time: '2-3 hours', price: '16 EUR' },
+    { title: 'Presidential Palace', description: 'Qasr Al Watan - working palace open to public. Intricate Arabian design, grand library, governance exhibits. Tours every 30 minutes. Strict modest dress required.', stop: 'Stop 11 - Presidential Palace', time: '1.5-2 hours', price: '16 EUR' },
+    { title: 'Emirates Palace Hotel', description: 'Ultra-luxury hotel with gold interiors. Visit lobby, try 24k gold cappuccino (21 EUR), afternoon tea. Perfect for experiencing Abu Dhabi opulence.', stop: 'Stop 10 - Emirates Palace', time: '1 hour', price: 'Free lobby' },
     { title: 'Heritage Village', description: 'Traditional Bedouin village reconstruction. Watch craftsmen, explore museum, learn pre-oil UAE life. FREE entry. Perfect for cultural understanding.', stop: 'Stop 6 - Heritage Village', time: '1-2 hours', price: 'FREE' },
-    { title: 'Corniche Waterfront', description: '8km promenade with Blue Flag beaches, parks, cycling paths. Perfect for walks, jogs, relaxation. Free public beaches with facilities.', stop: 'Stops 3-4 - Corniche', time: '1-3 hours', price: 'FREE' }
+    { title: 'Yas Island Theme Parks', description: 'Ferrari World, Yas Waterworld, Warner Bros, SeaWorld - all included FREE with your Hilton hotel stay! Shuttle bus from hotel. World-class entertainment.', stop: 'Your Hotel Area', time: 'Full day each', price: 'FREE (hotel)' }
   ];
 
   const currentStop = selectedStop ? stops.find(s => s.id === selectedStop) : null;
@@ -76,7 +77,7 @@ export default function AbuDhabiBigBusMap() {
 
         <div className="bg-orange-100 border-l-4 border-orange-500 p-4 mb-6 rounded-lg">
           <p className="text-orange-900">
-            <strong>Big Bus Info:</strong> Red Route has 14 stops, buses every 60 minutes. 24hr ticket from 75 USD. Includes Grand Mosque shuttle. 48hr adds Louvre entry. 72hr adds Presidential Palace. Open-top with AC and audio guide in 8 languages.
+            <strong>Big Bus Info:</strong> Red Route has 14 stops, buses every 60 minutes. 24hr ticket from 70 EUR. Includes Grand Mosque shuttle. 48hr adds Louvre entry. 72hr adds Presidential Palace. <strong>Note:</strong> Your hotel is on Yas Island - take taxi to Abu Dhabi Mall (12 EUR) to start tour.
           </p>
         </div>
 
@@ -101,6 +102,7 @@ export default function AbuDhabiBigBusMap() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 bg-gradient-to-b from-cyan-50 to-teal-100 rounded-2xl shadow-2xl p-8 relative">
             <div className="absolute top-4 right-4 bg-white p-3 rounded-lg shadow-lg text-sm z-10">
+              <div className="flex items-center gap-2 mb-2"><div className="w-4 h-4 bg-green-500 rounded-full border-2 border-green-700"></div><span>Your Hotel (Yas Island)</span></div>
               <div className="flex items-center gap-2 mb-2"><div className="w-4 h-4 bg-teal-600 rounded-full border-2 border-teal-800"></div><span>Major Attraction</span></div>
               <div className="flex items-center gap-2 mb-2"><div className="w-4 h-4 bg-cyan-500 rounded-full border-2 border-cyan-700"></div><span>Bus Stop</span></div>
               {userLocation && (<div className="flex items-center gap-2"><div className="w-4 h-4 bg-blue-500 rounded-full border-2 border-blue-700"></div><span>Your Location</span></div>)}
@@ -131,7 +133,7 @@ export default function AbuDhabiBigBusMap() {
                 const isSelected = selectedStop === stop.id;
                 return (
                   <g key={stop.id}>
-                    <circle cx={stop.x} cy={stop.y} r={isSelected ? 12 : 8} fill={stop.type === 'major' ? '#0D9488' : '#06B6D4'} stroke={isSelected ? '#FCD34D' : '#115E59'} strokeWidth={isSelected ? 4 : 2} onClick={() => setSelectedStop(stop.id)} style={{ cursor: 'pointer' }}/>
+                    <circle cx={stop.x} cy={stop.y} r={isSelected ? 12 : 8} fill={stop.type === 'hotel' ? '#22C55E' : (stop.type === 'major' ? '#0D9488' : '#06B6D4')} stroke={isSelected ? '#FCD34D' : (stop.type === 'hotel' ? '#15803D' : '#115E59')} strokeWidth={isSelected ? 4 : 2} onClick={() => setSelectedStop(stop.id)} style={{ cursor: 'pointer' }}/>
                     <text x={stop.x} y={stop.y - 15} textAnchor="middle" fontSize="9" fontWeight="600" fill="#1F2937" style={{ pointerEvents: 'none' }}>{stop.name}</text>
                   </g>
                 );
@@ -164,11 +166,11 @@ export default function AbuDhabiBigBusMap() {
             <div className="bg-white rounded-2xl shadow-xl p-6">
               <div className="flex items-center gap-2 mb-4"><Info className="w-6 h-6 text-teal-600" /><h3 className="text-xl font-bold text-teal-600">Travel Tips</h3></div>
               <ul className="space-y-2 text-sm text-gray-700">
-                <li className="pb-2 border-b border-gray-200"><strong>Tickets:</strong> 24hr (75 USD), 48hr (+Louvre), 72hr (+Palace)</li>
+                <li className="pb-2 border-b border-gray-200"><strong>Tickets:</strong> 24hr (70 EUR), 48hr (+Louvre 90 EUR), 72hr (+Palace 110 EUR)</li>
                 <li className="pb-2 border-b border-gray-200"><strong>Weather:</strong> 18-28C, warm and sunny in February</li>
                 <li className="pb-2 border-b border-gray-200"><strong>Dress Code:</strong> Modest at mosque and palace - STRICT!</li>
                 <li className="pb-2 border-b border-gray-200"><strong>Start Point:</strong> Abu Dhabi Mall recommended</li>
-                <li className="pb-2 border-b border-gray-200"><strong>Currency:</strong> UAE Dirham (AED), 1 USD = 3.67 AED</li>
+                <li className="pb-2 border-b border-gray-200"><strong>Currency:</strong> UAE Dirham (AED), 1 EUR = 4 AED</li>
                 <li className="pb-2 border-b border-gray-200"><strong>Language:</strong> Arabic, English widely spoken</li>
                 <li><strong>App:</strong> Download Big Bus app for live tracking</li>
               </ul>
